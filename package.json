@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/osirvent/nmb2b-client-js",
+    "url": "https://github.com/osirvent/nmb2b-client-js"
   },
   "engines": {
     "node": ">=12"
