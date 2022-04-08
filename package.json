@@ -1,5 +1,5 @@
 {
-  "name": "@dgac/nmb2b-client/forked",
+  "name": "dgac/nmb2b-client/forked",
   "version": "0.5.2",
   "description": "DGAC NM B2B Soap client",
   "main": "dist/index.js",
