@@ -1,12 +1,14 @@
 {
-  "name": "nmb2b-client/forked",
+  "name": "nmb2b-client-forked",
   "version": "0.5.2",
   "description": "DGAC NM B2B Soap client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Benjamin BERET <benjamin.beret@aviation-civile.gouv.fr>",
   "license": "MIT",
-  "repository": "https://github.com/osirvent/nmb2b-client-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osirvent/nmb2b-client-js",
   "engines": {
     "node": ">=12"
   },
