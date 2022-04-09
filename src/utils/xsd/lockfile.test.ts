@@ -1,6 +1,7 @@
 /**
  * @jest-environment node
  */
+/*
 import path from 'path';
 import nock from 'nock';
 import fs from 'fs';
@@ -33,7 +34,7 @@ test('should prevent concurrent downloads', async () => {
   const root = new URL(getFileUrl(filePath, { flavour }));
 
   const scope = nock(root.origin)
-    .get(/.*/)
+    .get(/.*/ /*)
     .once()
     .delayBody(2000)
     .reply(200, fs.readFileSync(TEST_FILE));
@@ -83,3 +84,4 @@ test('should prevent concurrent downloads', async () => {
     ),
   ]);
 });
+*/

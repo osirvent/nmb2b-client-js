@@ -7,8 +7,8 @@ const debug = d('wsdl');
 import lockfile from 'proper-lockfile';
 import { dirExists, createDir } from '../fs';
 import { Config } from '../../config';
-import { requestFilename } from './filePath';
-import { downloadFile } from './downloadFile';
+//import { requestFilename } from './filePath';
+//import { downloadFile } from './downloadFile';
 
 const readdir = promisify(fs.readdir);
 
@@ -50,10 +50,10 @@ export async function download(config: Config): Promise<void> {
     return;
   }
 
-  const fileName = await requestFilename(config);
+  // const fileName = await requestFilename(config);
 
-  debug(`Downloading ${fileName}`);
+  // debug(`Downloading ${fileName}`);
 
-  await downloadFile(fileName, config);
+  // await downloadFile(fileName, config);
   await release();
 }

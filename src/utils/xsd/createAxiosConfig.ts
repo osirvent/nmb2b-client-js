@@ -1,3 +1,4 @@
+/*
 import type { Security } from '../../security';
 import https from 'https';
 
@@ -15,3 +16,4 @@ export function createAxiosConfig({ security }: { security: Security }) {
 
   return { httpsAgent };
 }
+*/
