@@ -27,6 +27,7 @@ async function WSDLExists(config: Config): Promise<boolean> {
   return files.length > 0;
 }
 
+/*
 export async function download(config: Config): Promise<void> {
   const outputDir = getWSDLPath(config);
 
@@ -57,3 +58,4 @@ export async function download(config: Config): Promise<void> {
   // await downloadFile(fileName, config);
   await release();
 }
+*/
