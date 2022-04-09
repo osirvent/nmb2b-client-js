@@ -14,10 +14,11 @@ export type FlowClient = any;
 
 function createFlowServices(config: Config): Promise<FlowClient> {
   const WSDL = getWSDL(config);
+  const endpoint = getEndpoint(config);
   const security = prepareSecurity(config);
   return new Promise((resolve, reject) => {
     try {
-      createClient(WSDL, { customDeserializer }, (err, client) => {
+      createClient(WSDL, { customDeserializer, endpoint }, (err, client) => {
         if (err) {
           return reject(err);
         }
@@ -67,15 +68,14 @@ export interface FlowService {
 }
 
 export function getFlowClient(config: Config): Promise<FlowService> {
-  return createFlowServices(config).then(client => ({
+  return createFlowServices(config).then((client) => ({
     __soapClient: client,
     retrieveSectorConfigurationPlan: retrieveSectorConfigurationPlan(client),
     queryTrafficCountsByAirspace: queryTrafficCountsByAirspace(client),
     queryRegulations: queryRegulations(client),
     queryHotspots: queryHotspots(client),
-    queryTrafficCountsByTrafficVolume: queryTrafficCountsByTrafficVolume(
-      client,
-    ),
+    queryTrafficCountsByTrafficVolume:
+      queryTrafficCountsByTrafficVolume(client),
     retrieveOTMVPlan: retrieveOTMVPlan(client),
     retrieveCapacityPlan: retrieveCapacityPlan(client),
   }));

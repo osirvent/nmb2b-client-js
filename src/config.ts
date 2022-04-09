@@ -40,8 +40,8 @@ export function isConfigValid(args: Config): args is Config {
 }
 
 const B2B_ROOTS = {
-  OPS: 'https://www.b2b.nm.eurocontrol.int',
-  PREOPS: 'https://www.b2b.preops.nm.eurocontrol.int',
+  OPS: 'https://b2bops.enaire.es:20000/Proxy/Get/LECB',
+  PREOPS: 'https://b2bpreops.enaire.es:20000/Proxy/Get/LECB',
 };
 
 export function getEndpoint(
@@ -50,11 +50,10 @@ export function getEndpoint(
   const { endpoint, flavour } = config;
 
   if (flavour && flavour === 'PREOPS') {
-    return `${endpoint ||
-      B2B_ROOTS.PREOPS}/B2B_PREOPS/gateway/spec/${B2B_VERSION}`;
+    return `${endpoint || B2B_ROOTS.PREOPS}`;
   }
 
-  return `${endpoint || B2B_ROOTS.OPS}/B2B_OPS/gateway/spec/${B2B_VERSION}`;
+  return `${endpoint || B2B_ROOTS.OPS}`;
 }
 
 export function getFileEndpoint(
