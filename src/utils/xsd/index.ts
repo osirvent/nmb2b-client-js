@@ -7,8 +7,8 @@ const debug = d('wsdl');
 import lockfile from 'proper-lockfile';
 import { dirExists, createDir } from '../fs';
 import { Config } from '../../config';
-import { requestFilename } from './filePath';
-import { downloadFile } from './downloadFile';
+//import { requestFilename } from './filePath';
+//import { downloadFile } from './downloadFile';
 
 const readdir = promisify(fs.readdir);
 
@@ -27,6 +27,7 @@ async function WSDLExists(config: Config): Promise<boolean> {
   return files.length > 0;
 }
 
+/*
 export async function download(config: Config): Promise<void> {
   const outputDir = getWSDLPath(config);
 
@@ -57,3 +58,4 @@ export async function download(config: Config): Promise<void> {
   await downloadFile(fileName, config);
   await release();
 }
+*/

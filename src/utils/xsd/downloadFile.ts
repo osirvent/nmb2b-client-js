@@ -1,3 +1,4 @@
+/*
 import { getFileUrl } from '../../config';
 import { B2BFlavour } from '../../constants';
 import { Security } from '../../security';
@@ -78,3 +79,4 @@ export async function downloadFile(
     //     });
   });
 }
+*/
