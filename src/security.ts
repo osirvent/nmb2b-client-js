@@ -39,6 +39,7 @@ interface NtlmSecurity {
 export type Security = PfxSecurity | PemSecurity | ApiGwSecurity | NtlmSecurity;
 
 export function isValidSecurity(obj: Security): obj is Security {
+  /*
   if ('apiKeyId' in obj) {
     invariant(
       !!obj.apiKeyId && obj.apiKeyId.length > 0,
@@ -65,6 +66,7 @@ export function isValidSecurity(obj: Security): obj is Security {
       'security.key must be a buffer if security.pem is defined',
     );
   }
+  */
 
   /*
   if ('username' in obj) {
