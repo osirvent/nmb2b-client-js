@@ -6,6 +6,7 @@ import {
   ClientSSLSecurity,
   ClientSSLSecurityPFX,
   BasicAuthSecurity,
+  NTLMSecurity,
   ISecurity,
 } from 'soap';
 import fs from 'fs';
@@ -29,7 +30,13 @@ interface ApiGwSecurity {
   apiSecretKey: string;
 }
 
-export type Security = PfxSecurity | PemSecurity | ApiGwSecurity;
+interface NtlmSecurity {
+  username: string;
+  password: string;
+  domain: string;
+}
+
+export type Security = PfxSecurity | PemSecurity | ApiGwSecurity | NtlmSecurity;
 
 export function isValidSecurity(obj: Security): obj is Security {
   if ('apiKeyId' in obj) {
@@ -59,6 +66,15 @@ export function isValidSecurity(obj: Security): obj is Security {
     );
   }
 
+  /*
+  if ('username' in obj) {
+    invariant(
+      !!obj.username && obj.username.length > 0,
+      'security.username must be a string with a length > 0',
+    )
+  }
+  */
+
   return true;
 }
 
@@ -82,6 +98,10 @@ export function prepareSecurity(config: Config): ISecurity {
       undefined,
       !!passphrase ? { passphrase } : null,
     );
+  } else if ('username' in security) {
+    debug('Using NTLM security');
+    const { username, password, domain } = security;
+    return new NTLMSecurity({ username, password, domain });
   }
 
   throw new Error('Invalid security object');
