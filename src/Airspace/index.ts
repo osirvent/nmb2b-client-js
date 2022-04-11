@@ -16,10 +16,11 @@ export type AirspaceClient = any;
 
 function createAirspaceServices(config: Config): Promise<AirspaceClient> {
   const WSDL = getWSDL(config);
+  const endpoint = getEndpoint(config);
   const security = prepareSecurity(config);
 
   return new Promise((resolve, reject) =>
-    createClient(WSDL, { customDeserializer }, (err, client) => {
+    createClient(WSDL, { customDeserializer, endpoint }, (err, client) => {
       if (err) {
         return reject(err);
       }
@@ -47,7 +48,7 @@ export interface AirspaceService {
 }
 
 export function getAirspaceClient(config: Config): Promise<AirspaceService> {
-  return createAirspaceServices(config).then(client => ({
+  return createAirspaceServices(config).then((client) => ({
     __soapClient: client,
     queryCompleteAIXMDatasets: queryCompleteAIXMDatasets(client),
     retrieveAUPChain: retrieveAUPChain(client),

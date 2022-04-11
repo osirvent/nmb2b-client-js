@@ -14,10 +14,11 @@ export type FlightClient = any;
 
 function createFlightServices(config: Config): Promise<FlightClient> {
   const WSDL = getWSDL(config);
+  const endpoint = getEndpoint(config);
   const security = prepareSecurity(config);
   return new Promise((resolve, reject) => {
     try {
-      createClient(WSDL, { customDeserializer }, (err, client) => {
+      createClient(WSDL, { customDeserializer, endpoint }, (err, client) => {
         if (err) {
           return reject(err);
         }
@@ -60,7 +61,7 @@ export interface FlightService {
 }
 
 export function getFlightClient(config: Config): Promise<FlightService> {
-  return createFlightServices(config).then(client => ({
+  return createFlightServices(config).then((client) => ({
     __soapClient: client,
     retrieveFlight: retrieveFlight(client),
     queryFlightsByAirspace: queryFlightsByAirspace(client),

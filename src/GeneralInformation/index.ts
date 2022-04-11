@@ -20,7 +20,7 @@ function createGeneralInformationServices(
 
   return new Promise((resolve, reject) => {
     try {
-      createClient(WSDL, { customDeserializer }, (err, client) => {
+      createClient(WSDL, { customDeserializer, endpoint }, (err, client) => {
         if (err) {
           return reject(err);
         }
@@ -51,11 +51,11 @@ export function getGeneralInformationClient(
   config: Config,
 ): Promise<GeneralInformationService> {
   return createGeneralInformationServices(config).then(
-    client => ({
+    (client) => ({
       __soapClient: client,
       queryNMB2BWSDLs: queryNMB2BWSDLs(client),
     }),
-    err => {
+    (err) => {
       // TODO: Implement a proper debug log message output
       // tslint:disable-next-line
       console.error(err);
